@@ -60,6 +60,15 @@ Build the team process from user-confirmed project facts. Keep planning records 
 - Prefer repository-relative durable links. Do not make canonical status depend on temporary worktree paths.
 - Record waivers with approver, reason, risk, expiration, and follow-up.
 
+## Visualize Complex Information
+
+- Prefer Mermaid when a task, dependency graph, lifecycle, architecture, ownership boundary, data flow, or recovery sequence is materially clearer as a diagram than as prose.
+- Prefer LaTeX math when an objective, constraint, metric, state transition, parameterization, or acceptance formula needs precise notation.
+- Keep diagrams and equations evidence-backed and consistent with the source of truth. Do not turn proposals, paper placeholders, or unverified system behavior into authoritative visuals.
+- Keep the source readable when rendering is unavailable: use descriptive node names, define every symbol near its first equation, and retain exact commands, identifiers, and acceptance criteria in text or tables.
+- Use the smallest useful visual. Avoid decorative diagrams, duplicated prose, and oversized graphs that obscure ownership or execution order.
+- Treat rendered visuals as explanatory documentation, not execution evidence. Commands, revisions, configurations, artifacts, and measured results remain the acceptance record.
+
 ## Resources
 
 - [initialization-interview.md](references/initialization-interview.md): mandatory setup questions and confirmation contract.

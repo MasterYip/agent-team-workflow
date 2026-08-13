@@ -75,6 +75,14 @@ Require a goal manifest before assignment and an inspection report at handoff. O
 
 Keep compact reports, manifests, checksums, aggregate data, scripts, and selected figures in Git. Keep datasets, checkpoints, raw traces, repeated media, caches, runtime logs, PID/status files, and transfer bundles in durable artifact storage with identity and checksums.
 
+## Documentation And Visualization
+
+Use Mermaid for dependency graphs, lifecycle/state flows, architecture, data flow, ownership, and recovery sequences when the relationships are easier to verify visually. Use LaTeX for objectives, constraints, metrics, state/condition parameterizations, and other mathematical contracts.
+
+Every diagram and equation must match the recorded implementation or be labeled clearly as proposed. Keep Mermaid readable in source form, define mathematical symbols locally, and retain exact commands, revisions, configurations, and acceptance evidence in text or tables. Visuals explain the work; they do not replace executable evidence.
+
+Prefer one focused visual over several decorative or repetitive diagrams. Update or remove visuals when the underlying contract changes.
+
 ## Status Maintenance
 
 Maintain exactly one canonical row per task ID in `task_status.md`. Maintain current reservations and jobs in `resource_status.md`. Do not create dated progress snapshots unless the confirmed setup or user requests them. Do not commit heartbeat-only timestamp updates unless the commit policy requires it.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Team Workflow"
+  short_description: "Initialize and operate portable agent teams"
+  default_prompt: "Use $agent-team-workflow to initialize and operate an auditable agent team in this repository."

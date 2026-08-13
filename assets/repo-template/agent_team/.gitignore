@@ -1,0 +1,20 @@
+# Runtime state and bulk artifacts
+*.log
+*.pid
+*.status
+*.orig
+*.rej
+*.ckpt
+*.pt
+*.pth
+*.npz
+*.npy
+*.tar
+*.tar.gz
+*.zip
+__pycache__/
+.cache/
+wandb/
+outputs/
+artifacts/raw/
+artifacts/runs/

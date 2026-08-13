@@ -1,0 +1,9 @@
+<!-- agent-team-workflow:start -->
+## Agent Team Workflow
+
+Read `{{DOCS_DIR}}/agent_team_init.md`, `{{DOCS_DIR}}/setup_answers.yaml`, `{{DOCS_DIR}}/resources_manifest.yaml`, and `{{DOCS_DIR}}/agent_team_scheme.md` before managing or assigning agent-team tasks.
+
+If `setup_answers.yaml` is absent, unconfirmed, or contains unresolved placeholders, conduct the initialization interview in `agent_team_init.md` incrementally and obtain user confirmation before writing project files or launching work.
+
+Maintain one canonical owner/thread per task, track agent and external-job state separately, honor declared approval boundaries, and update `{{DOCS_DIR}}/task_status.md` at lifecycle changes and the configured active-work cadence.
+<!-- agent-team-workflow:end -->

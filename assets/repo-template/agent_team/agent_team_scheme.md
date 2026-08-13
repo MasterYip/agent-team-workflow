@@ -1,0 +1,80 @@
+# {{PROJECT_NAME}} Agent Team Scheme
+
+## Objective
+
+{{PROJECT_OBJECTIVE}}
+
+## Sources Of Truth
+
+Use this precedence unless the confirmed setup says otherwise:
+
+1. Current user direction and accepted task-manifest amendments.
+2. Repository `AGENTS.md` files in scope.
+3. This setup contract and resource manifest.
+4. Component-specific instructions and accepted historical examples.
+
+Resolve conflicts before continuing. Do not silently choose the most convenient instruction.
+
+## Task Model
+
+Manage work as a dependency graph. Give each formal task one measurable outcome, one owner, one canonical agent thread, one reviewer, one durable task directory, and one implementation branch/worktree when code or source assets change.
+
+Formal task trigger: **{{FORMAL_TASK_TRIGGER}}**.
+
+Keep `phase` separate from portfolio `status`:
+
+- phase: `proposed`, `ready`, `active`, `review`, `evaluation`, `accepted`, `integrated`;
+- status: `running`, `waiting`, `blocked`, `completed`, `archived`, `superseded`.
+
+## Roles And Ownership
+
+The setup contract defines the manager, owners, reviewers, integrator, resource steward, and any single-writer roles. One person or agent may hold several roles, but a substantive task owner must not be the sole acceptor unless the setup records that exception.
+
+Assign exclusive ownership for high-conflict files, mutable datasets, registries, canonical environments, evaluation checkouts, and resource reservations.
+
+## Worktrees And Integration
+
+Use task worktrees for implementation changes. Keep management records in this canonical documentation location. Record base, candidate, nested-repository, and integration revisions. Never integrate uncommitted worktree state.
+
+Use a controlled integration/evaluation checkout for authoritative checks when environment or source-origin ambiguity is possible. Reject project imports that resolve outside the intended checkout.
+
+## Gates
+
+Run applicable gates from cheapest to most expensive:
+
+1. declared scope and clean diff;
+2. parse, format, lint, syntax, and type checks;
+3. focused deterministic unit tests;
+4. bounded component smoke and source-origin checks;
+5. controlled integration evaluation;
+6. registered experiment with config, data, seed, resource, and artifact provenance;
+7. deployment or publication evidence.
+
+Record mandatory versus diagnostic gates. Record waivers with approver, reason, risk, expiration, and follow-up.
+
+## Monitoring And Recovery
+
+Support at most **{{MAX_AGENTS}}** concurrent agents unless the user amends the setup. Refresh status every **{{STATUS_CADENCE_MINUTES}} minutes** during active work and immediately at lifecycle changes.
+
+Track agent state and external-job state separately. Record last verification, next check, resource, process/job ID, progress or terminal marker, next gate, and blocker.
+
+Reuse the canonical agent thread after timeout, disconnection, retry, or revision. Before replacement or relaunch, verify external jobs and artifacts read-only. Never assume a timed-out agent stopped its job.
+
+## Authority Boundaries
+
+- Commit policy: {{COMMIT_POLICY}}
+- Push policy: {{PUSH_POLICY}}
+- Destructive/process-termination policy: {{DESTRUCTIVE_ACTION_POLICY}}
+- External action, network, transfer, message, and deployment policy: {{EXTERNAL_ACTION_POLICY}}
+
+Never expose credentials or private connection details. Never terminate, delete, overwrite, transfer, deploy, push, or contact external parties beyond confirmed authority.
+
+## Evidence And Retention
+
+Require a goal manifest before assignment and an inspection report at handoff. Owners report completion; reviewers or the manager accept. Use repository-relative durable links.
+
+Keep compact reports, manifests, checksums, aggregate data, scripts, and selected figures in Git. Keep datasets, checkpoints, raw traces, repeated media, caches, runtime logs, PID/status files, and transfer bundles in durable artifact storage with identity and checksums.
+
+## Status Maintenance
+
+Maintain exactly one canonical row per task ID in `task_status.md`. Maintain current reservations and jobs in `resource_status.md`. Do not create dated progress snapshots unless the confirmed setup or user requests them. Do not commit heartbeat-only timestamp updates unless the commit policy requires it.

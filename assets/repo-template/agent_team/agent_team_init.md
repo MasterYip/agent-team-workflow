@@ -30,7 +30,7 @@ Do not infer authority from tool access. Store secret references such as `env:NA
 - Repository: {{REPOSITORY_PATH}}
 - Documentation root: {{DOCS_DIR}}
 - Formal task trigger: {{FORMAL_TASK_TRIGGER}}
-- Maximum concurrent agents: {{MAX_AGENTS}}
+- Agent concurrency setting: {{MAX_AGENTS}}
 - Status cadence: every {{STATUS_CADENCE_MINUTES}} minutes while work is active
 - Confirmed by: {{CONFIRMED_BY}}
 - Confirmed at: {{CONFIRMED_AT}}

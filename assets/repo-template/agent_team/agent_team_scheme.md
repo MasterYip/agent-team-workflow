@@ -54,7 +54,7 @@ Record mandatory versus diagnostic gates. Record waivers with approver, reason, 
 
 ## Monitoring And Recovery
 
-Support at most **{{MAX_AGENTS}}** concurrent agents unless the user amends the setup. Refresh status every **{{STATUS_CADENCE_MINUTES}} minutes** during active work and immediately at lifecycle changes.
+Agent concurrency setting: **{{MAX_AGENTS}}**. Regardless of whether the configured value is numeric or unlimited, start work only within the resource, ownership, and approval constraints in the setup contract. Refresh status every **{{STATUS_CADENCE_MINUTES}} minutes** during active work and immediately at lifecycle changes.
 
 Track agent state and external-job state separately. Record last verification, next check, resource, process/job ID, progress or terminal marker, next gate, and blocker.
 

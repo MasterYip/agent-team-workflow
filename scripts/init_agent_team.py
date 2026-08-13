@@ -156,10 +156,23 @@ def validate_config(
     for key in required_workflow_text:
         require_text(workflow, key, "workflow")
 
-    for key in ("status_cadence_minutes", "max_agents"):
-        value = workflow.get(key)
-        if not isinstance(value, int) or isinstance(value, bool) or value <= 0:
-            raise ConfigError(f"workflow.{key} must be a positive integer")
+    status_cadence = workflow.get("status_cadence_minutes")
+    if (
+        not isinstance(status_cadence, int)
+        or isinstance(status_cadence, bool)
+        or status_cadence <= 0
+    ):
+        raise ConfigError("workflow.status_cadence_minutes must be a positive integer")
+
+    max_agents = workflow.get("max_agents")
+    if max_agents != "unlimited" and (
+        not isinstance(max_agents, int)
+        or isinstance(max_agents, bool)
+        or max_agents <= 0
+    ):
+        raise ConfigError(
+            "workflow.max_agents must be a positive integer or 'unlimited'"
+        )
 
     integration = workflow["agents_integration"]
     if integration not in INTEGRATION_MODES:

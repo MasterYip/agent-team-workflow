@@ -101,7 +101,7 @@ workflow:
   docs_dir: agent_team
   formal_task_trigger: explicit
   status_cadence_minutes: 10
-  max_agents: 3
+  max_agents: unlimited
   commit_policy: "Batch coherent reviewed changes"
   push_policy: "Require explicit approval"
   destructive_action_policy: "Require explicit approval"

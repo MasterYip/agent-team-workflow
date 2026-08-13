@@ -228,12 +228,26 @@ def validate_setup_and_resources(
             errors.append(f"setup_answers.yaml: {key} must be a mapping")
     workflow = setup.get("workflow", {})
     if isinstance(workflow, dict):
-        for key in ("status_cadence_minutes", "max_agents"):
-            value = workflow.get(key)
-            if not isinstance(value, int) or isinstance(value, bool) or value <= 0:
-                errors.append(
-                    f"setup_answers.yaml: workflow.{key} must be a positive integer"
-                )
+        status_cadence = workflow.get("status_cadence_minutes")
+        if (
+            not isinstance(status_cadence, int)
+            or isinstance(status_cadence, bool)
+            or status_cadence <= 0
+        ):
+            errors.append(
+                "setup_answers.yaml: workflow.status_cadence_minutes "
+                "must be a positive integer"
+            )
+        max_agents = workflow.get("max_agents")
+        if max_agents != "unlimited" and (
+            not isinstance(max_agents, int)
+            or isinstance(max_agents, bool)
+            or max_agents <= 0
+        ):
+            errors.append(
+                "setup_answers.yaml: workflow.max_agents must be a positive "
+                "integer or 'unlimited'"
+            )
         if workflow.get("agents_integration") not in {"fragment", "create", "none"}:
             errors.append("setup_answers.yaml: invalid workflow.agents_integration")
     confirmation = setup.get("confirmation", {})

@@ -326,12 +326,23 @@ def validate_setup_and_resources(
 def validate_task_records(repo: Path, docs: Path, errors: list[str]) -> None:
     tasks_root = docs / "tasks"
     task_ids: list[str] = []
-    directories = (
+    active_directories = [
         path
         for path in tasks_root.iterdir()
-        if path.is_dir() and path.name != "_template"
-    )
-    for directory in sorted(directories):
+        if path.is_dir() and path.name not in {"_template", "archived"}
+    ]
+    archive_root = tasks_root / "archived"
+    archived_directories = []
+    if archive_root.is_dir():
+        archived_directories = [
+            task
+            for classname in archive_root.iterdir()
+            if classname.is_dir()
+            for task in classname.iterdir()
+            if task.is_dir()
+        ]
+    archived_set = set(archived_directories)
+    for directory in sorted(active_directories + archived_directories):
         goal = directory / "goal_manifest.md"
         inspection = directory / "inspection_report.md"
         if not goal.is_file() or not inspection.is_file():
@@ -354,6 +365,19 @@ def validate_task_records(repo: Path, docs: Path, errors: list[str]) -> None:
             errors.append(f"{goal.relative_to(repo)}: invalid phase {phase!r}")
         if status not in STATUSES:
             errors.append(f"{goal.relative_to(repo)}: invalid status {status!r}")
+        if directory in archived_set and status != "archived":
+            errors.append(
+                f"{goal.relative_to(repo)}: archived task directory requires "
+                "status 'archived'"
+            )
+        if directory in archived_set and task_id:
+            expected_class = task_id.split("-", 1)[0]
+            actual_class = directory.parent.name
+            if actual_class != expected_class:
+                errors.append(
+                    f"{directory.relative_to(repo)}: archive class must be "
+                    f"{expected_class!r} for task {task_id!r}"
+                )
         if not owner or owner.lower() in {"unknown", "unassigned", "none"}:
             errors.append(f"{goal.relative_to(repo)}: accountable owner is required")
         if not reviewer or reviewer.lower() in {"unknown", "unassigned", "none"}:

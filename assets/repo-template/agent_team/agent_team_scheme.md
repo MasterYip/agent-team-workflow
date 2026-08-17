@@ -75,6 +75,28 @@ Require a goal manifest before assignment and an inspection report at handoff. O
 
 Keep compact reports, manifests, checksums, aggregate data, scripts, and selected figures in Git. Keep datasets, checkpoints, raw traces, repeated media, caches, runtime logs, PID/status files, and transfer bundles in durable artifact storage with identity and checksums.
 
+## Archived Task Organization
+
+Keep active lifecycle records directly under `tasks/YYYYMMDD_TASK-ID/`. Only when a
+task's portfolio status changes to `archived`, move its complete durable directory to:
+
+```text
+tasks/archived/<classname>/YYYYMMDD_TASK-ID/
+```
+
+Derive `<classname>` from the broad leading task-ID prefix before the first
+hyphen: `ENV-VIS-015`, `ENV-REJECT-006`, and `ENV-TORSO-007` all belong to
+`ENV`; `RL-SMOKE-002` belongs to `RL`; and `DOC-001` belongs to `DOC`. Do not
+create a class directory for each narrow task family. Keep the dated
+task-directory name unchanged so history and provenance remain recognizable.
+
+Perform the move in the same lifecycle update that marks the task archived. Update
+every canonical relative link in `task_status.md` and any dependency, experiment,
+decision, or claim-evidence record. Keep exactly one task directory; do not leave a
+copy at the old path. Never move `running`, `waiting`, `blocked`, `completed`, or
+`superseded` tasks into the archive tree, and do not archive a task with a live
+external job or an unresolved integration gate.
+
 ## Documentation And Visualization
 
 Use Mermaid for dependency graphs, lifecycle/state flows, architecture, data flow, ownership, and recovery sequences when the relationships are easier to verify visually. Use LaTeX for objectives, constraints, metrics, state/condition parameterizations, and other mathematical contracts.

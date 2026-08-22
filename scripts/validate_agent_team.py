@@ -33,6 +33,7 @@ JOB_STATES = {
 }
 RESERVATION_STATES = {"planned", "reserved", "active", "released", "failed"}
 TOKEN_RE = re.compile(r"\{\{[A-Z0-9_]+\}\}")
+TASK_SERIAL_RE = re.compile(r"-(\d+)$")
 MARKDOWN_LINK_RE = re.compile(r"!?(?:\[[^\]]*\])\(([^)]+)\)")
 IPV4_RE = re.compile(r"(?<![\d.])(?:\d{1,3}\.){3}\d{1,3}(?![\d.])")
 SECRET_PATTERNS = (
@@ -326,6 +327,7 @@ def validate_setup_and_resources(
 def validate_task_records(repo: Path, docs: Path, errors: list[str]) -> None:
     tasks_root = docs / "tasks"
     task_ids: list[str] = []
+    task_serials: list[tuple[str, str]] = []
     active_directories = [
         path
         for path in tasks_root.iterdir()
@@ -361,6 +363,13 @@ def validate_task_records(repo: Path, docs: Path, errors: list[str]) -> None:
             errors.append(f"{goal.relative_to(repo)}: missing Task ID")
         else:
             task_ids.append(task_id)
+            serial_match = TASK_SERIAL_RE.search(task_id)
+            if not serial_match:
+                errors.append(
+                    f"{goal.relative_to(repo)}: Task ID must end in a numeric serial"
+                )
+            else:
+                task_serials.append((serial_match.group(1), task_id))
         if phase not in PHASES:
             errors.append(f"{goal.relative_to(repo)}: invalid phase {phase!r}")
         if status not in STATUSES:
@@ -392,7 +401,19 @@ def validate_task_records(repo: Path, docs: Path, errors: list[str]) -> None:
             )
     for task_id, count in Counter(task_ids).items():
         if count > 1:
-            errors.append(f"duplicate task ID in goal manifests: {task_id}")
+            errors.append(
+                "task IDs must be globally unique across active and archived "
+                f"history; duplicate goal-manifest ID: {task_id}"
+            )
+    serial_to_ids: dict[str, set[str]] = {}
+    for serial, task_id in task_serials:
+        serial_to_ids.setdefault(serial, set()).add(task_id)
+    for serial, serial_ids in sorted(serial_to_ids.items()):
+        if len(serial_ids) > 1:
+            errors.append(
+                "task numeric serials must be globally unique across all prefixes "
+                f"and classes; serial {serial} is used by {', '.join(sorted(serial_ids))}"
+            )
 
 
 def validate_live_status(docs: Path, errors: list[str]) -> None:

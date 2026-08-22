@@ -26,6 +26,12 @@ Keep `phase` separate from portfolio `status`:
 - phase: `proposed`, `ready`, `active`, `review`, `evaluation`, `accepted`, `integrated`;
 - status: `running`, `waiting`, `blocked`, `completed`, `archived`, `superseded`.
 
+### Task ID Uniqueness
+
+Treat each logical task ID as globally unique and immutable for the complete life of the project. Its terminal numeric serial is also globally unique across every task class and prefix: once any task uses `001`, no differently prefixed task may reuse `001`. Allocate one monotonically increasing, zero-padded project-wide sequence (`001`, `002`, `003`, ...), independent of the descriptive prefix. Before issuing an ID, search `task_status.md`, active and archived task directories, goal manifests, progress snapshots, decision records, and migrated legacy registers for both the full ID and its numeric serial. Never recycle either after completion, archival, rejection, cancellation, deletion, or supersession; preserve its historical record.
+
+A retry, revision, resume, or replacement owner remains the same task and must reuse its original ID, dated directory, and canonical thread. A materially different objective receives the next unused project-wide serial and records an explicit relationship such as `depends on` or `supersedes`. The descriptive prefix and `YYYYMMDD_` directory prefix cannot make a repeated numeric serial unique. If a duplicate is discovered, stop assignment and let the manager perform an explicit, user-approved reconciliation with a durable legacy-to-canonical mapping; never silently renumber accepted history.
+
 ## Roles And Ownership
 
 The setup contract defines the manager, owners, reviewers, integrator, resource steward, and any single-writer roles. One person or agent may hold several roles, but a substantive task owner must not be the sole acceptor unless the setup records that exception.

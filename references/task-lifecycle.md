@@ -1,5 +1,13 @@
 # Task Lifecycle And Records
 
+## Keep Task IDs Globally Unique
+
+A logical task ID is immutable and unique across the project's complete history. The terminal numeric serial is project-global, not prefix-local: allocate one monotonically increasing, zero-padded sequence across all task classes. If `ENV-VIS-015` exists, no `RL-*`, `DOC-*`, or other task may reuse `015`. Before creating a task, search the canonical index, active and archived task directories, goal manifests, progress snapshots, decision records, and any migrated legacy register for both the full ID and serial. Never issue an ID or serial that appears anywhere in those records.
+
+Do not recycle IDs from completed, archived, superseded, rejected, cancelled, or deleted work. Retain the historical record. A retry, revision, resumed agent, or replacement owner continues under the original task ID, directory, and canonical thread. When the objective is materially different, create a new ID and record `depends on`, `supersedes`, or another explicit relationship.
+
+The descriptive task prefix and date prefix in `YYYYMMDD_TASK-ID` cannot make a repeated terminal serial unique. If a duplicate is discovered, stop new assignment, preserve both records, and let the manager perform an explicit, user-approved reconciliation with a durable legacy-to-canonical mapping rather than silently renumbering accepted history.
+
 ## Keep Phase And Status Separate
 
 Use `phase` for workflow progression:
@@ -50,7 +58,7 @@ An owner may report `complete`; only the designated acceptor records `accepted`.
 
 ## Canonical Task Index
 
-Maintain exactly one row per task ID. Group rows by status instead of mixing lifecycle states. Include a local timestamp and totals. Refresh immediately on lifecycle changes and at the configured cadence while any task is running.
+Maintain exactly one row per globally unique task ID. Group rows by status instead of mixing lifecycle states. Include a local timestamp and totals. Refresh immediately on lifecycle changes and at the configured cadence while any task is running.
 
 Each row must contain:
 
@@ -95,7 +103,7 @@ agent_team/tasks/YYYYMMDD_TASK-ID/
   inspection_report.md
 ```
 
-Keep the date prefix immutable. Revisions and resumed agents reuse the same directory and task ID.
+Keep the date prefix immutable. It does not make a repeated logical ID unique. Revisions, retries, resumed agents, and replacement owners reuse the same directory and task ID.
 
 ## Evidence Rules
 

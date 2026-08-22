@@ -4,6 +4,8 @@
 
 Decompose the project into bounded tasks with one primary verb and a measurable deliverable. Record dependencies and gates. Split exploratory work from production integration and split unrelated ownership surfaces.
 
+Assign every logical task one project-lifetime unique ID from a single project-wide numeric sequence. The terminal serial is unique across all prefixes/classes, so `FIG-001` and `WEB-001` conflict. Check active and historical records for both the full ID and serial before issuing it. Never reuse either because a task completed, moved to the archive, became superseded, or changed owners. A retry, revision, resume, or replacement is still the same task and retains its original ID; materially new work receives the next unused serial with an explicit relationship to its predecessor.
+
 Create a formal task only according to the user-confirmed trigger. Questions, status requests, and clarifications do not automatically create new task records unless configured otherwise.
 
 ## Assign Accountable Roles

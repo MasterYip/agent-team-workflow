@@ -31,7 +31,7 @@ Build the team process from user-confirmed project facts. Keep planning records 
 
 1. Read [operating-scheme.md](references/operating-scheme.md) and [task-lifecycle.md](references/task-lifecycle.md) before creating the first task or changing lifecycle policy.
 2. Convert each goal into one measurable outcome with declared non-goals, owned paths, dependencies, resource budget, gates, stop conditions, and reviewer.
-3. Create one durable task ID, task directory, branch/worktree when implementation isolation is needed, and canonical agent thread. Reuse that thread for retries and resumed work.
+3. Create one globally unique, immutable task ID from a single project-wide numeric sequence, plus its task directory, branch/worktree when implementation isolation is needed, and canonical agent thread. The terminal serial must be unique across all task prefixes/classes. Before issuing the ID, search active, completed, archived, superseded, and historical records for both the full ID and serial. Never recycle either; retries, revisions, resumptions, and replacement owners reuse the original ID and directory.
 4. Keep management records in the canonical documentation checkout. Keep implementation changes in task-owned worktrees. Link reviewed commits, not uncommitted directories.
 5. Assign high-conflict files and mutable registries to one writer at a time.
 6. Start expensive or external work only after cheap checks, an inspected dry-run, a unique output path, and any required approval.

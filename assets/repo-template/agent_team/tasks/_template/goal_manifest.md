@@ -1,5 +1,7 @@
 # Goal Manifest: TASK-ID - Short title
 
+> `TASK-ID` must be globally unique and immutable for the life of the project. Its terminal numeric serial comes from one monotonically increasing project-wide sequence and must not be reused under another prefix. Search active, archived, superseded, and historical records for both the full ID and serial before issuing it. Never recycle either; retries and revisions reuse the original task record.
+
 ## Control
 
 | Field | Value |

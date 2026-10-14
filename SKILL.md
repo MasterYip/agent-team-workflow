@@ -31,6 +31,15 @@ Infer established configuration from user direction and existing records. Ask on
 for missing consequential facts. Prior authorization remains valid; do not repeat
 confirmation solely because a reference describes an interview.
 
+## LabWeft Adapter
+
+For research workspaces on this branch, read [labweft.md](references/labweft.md).
+Map the long-lived catalog project to its external LabWeft workspace and pinned
+backend project ID. Use `scripts/labweft_bridge.py` for read-only inspection,
+observation checkpoints and external command plans. Keep scientific interpretation
+separate from structural validity and source freshness. Never claim full semantic
+synchronization because an event chain or checkpoint comparison passes.
+
 ## Legacy Repository Initialization (V1)
 
 Use this path only for existing v1 installations or explicit legacy initialization.

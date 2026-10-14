@@ -31,6 +31,13 @@ Infer established configuration from user direction and existing records. Ask on
 for missing consequential facts. Prior authorization remains valid; do not repeat
 confirmation solely because a reference describes an interview.
 
+## SFTR Adapter
+
+For SFTR workspaces on this branch, read [sftr.md](references/sftr.md). Inspect the
+registered parent project with `scripts/sftr.py`; use core binding plans for exact
+files. Keep ProjectKeeper configuration and payloads read-only during discovery.
+All maintenance, backup execution and receipts belong to the external workspace.
+
 ## Legacy Repository Initialization (V1)
 
 Use this path only for existing v1 installations or explicit legacy initialization.

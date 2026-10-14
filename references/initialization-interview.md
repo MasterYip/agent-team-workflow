@@ -19,7 +19,7 @@ Ask:
 
 - What outcome is the team pursuing, and what is explicitly out of scope?
 - Which repositories, submodules, nested repositories, paper repos, services, or data repos participate?
-- What are the canonical branches, branch naming rules, worktree roots, integration branches, and merge strategy?
+- What are the canonical branches, branch naming rules, integration branches, and merge strategy? The default worktree root is `<primary-worktree>/.worktrees`; record explicit approval for any override.
 - Which changes may be made directly in the main checkout, and which require task worktrees?
 - What files or registries need exclusive single-writer ownership?
 

@@ -369,7 +369,13 @@ def validate_task_records(repo: Path, docs: Path, errors: list[str]) -> None:
                     f"{goal.relative_to(repo)}: Task ID must end in a numeric serial"
                 )
             else:
-                task_serials.append((serial_match.group(1), task_id))
+                serial = serial_match.group(1)
+                if len(serial) < 3:
+                    errors.append(
+                        f"{goal.relative_to(repo)}: task numeric serial must be "
+                        "zero-padded to at least three digits"
+                    )
+                task_serials.append((str(int(serial)), task_id))
         if phase not in PHASES:
             errors.append(f"{goal.relative_to(repo)}: invalid phase {phase!r}")
         if status not in STATUSES:
@@ -408,11 +414,15 @@ def validate_task_records(repo: Path, docs: Path, errors: list[str]) -> None:
     serial_to_ids: dict[str, set[str]] = {}
     for serial, task_id in task_serials:
         serial_to_ids.setdefault(serial, set()).add(task_id)
-    for serial, serial_ids in sorted(serial_to_ids.items()):
+    ordered_serials = sorted(
+        serial_to_ids.items(), key=lambda item: int(item[0])
+    )
+    for serial, serial_ids in ordered_serials:
         if len(serial_ids) > 1:
             errors.append(
                 "task numeric serials must be globally unique across all prefixes "
-                f"and classes; serial {serial} is used by {', '.join(sorted(serial_ids))}"
+                f"and classes; serial {int(serial):03d} is used by "
+                f"{', '.join(sorted(serial_ids))}"
             )
 
 

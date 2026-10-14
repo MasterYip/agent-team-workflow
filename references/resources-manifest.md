@@ -12,7 +12,7 @@ repositories:
     role: implementation
     local_path: /path/from-confirmed-setup
     canonical_branch: main
-    worktree_root: ../example-worktrees
+    worktree_root: .worktrees
     integration_branch: integration
 environments:
   - id: canonical-python

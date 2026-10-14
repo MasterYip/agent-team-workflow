@@ -40,7 +40,9 @@ Assign exclusive ownership for high-conflict files, mutable datasets, registries
 
 ## Worktrees And Integration
 
-Use task worktrees for implementation changes. Keep management records in this canonical documentation location. Record base, candidate, nested-repository, and integration revisions. Never integrate uncommitted worktree state.
+Use task worktrees for implementation changes. Place them under the repository's primary checkout at `.worktrees/<TASK-ID>` and add `.worktrees/` to the primary checkout's `.git/info/exclude` before creation. This keeps local task checkouts omitted from ordinary editor Git Graph discovery without changing the canonical branch. Do not create sibling `../<repo>-worktrees` roots or add `.worktrees` as a separate editor workspace/Git repository unless the user explicitly approves and the task manifest records the exception.
+
+Keep management records in this canonical documentation location. Record the repository-relative worktree path, base, candidate, nested-repository, and integration revisions. Move existing worktrees only when clean through `git worktree move`, preserving branch and HEAD. Never integrate uncommitted worktree state.
 
 Use a controlled integration/evaluation checkout for authoritative checks when environment or source-origin ambiguity is possible. Reject project imports that resolve outside the intended checkout.
 

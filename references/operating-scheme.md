@@ -26,6 +26,9 @@ Allow one person or agent to hold multiple roles when necessary, but do not let 
 ## Isolate Work
 
 - Use one task branch and one implementation worktree for code, configuration, paper source, or generated implementation assets.
+- Place task worktrees under the repository's primary checkout at `.worktrees/<TASK-ID>`. Before creation, put `.worktrees/` in the primary checkout's `.git/info/exclude` (or in tracked `.gitignore` only when the project deliberately standardizes it). This is the portable default that keeps nested task repositories out of ordinary editor Git Graph discovery.
+- Do not use sibling roots such as `../<repo>-worktrees` and do not add `.worktrees` as an editor workspace folder or separately discovered repository. Any alternate worktree root requires explicit user approval and a durable task-manifest exception.
+- Record worktrees repository-relatively as `.worktrees/<TASK-ID>`. Move an existing worktree only when clean, through `git worktree move`, and verify that its branch and HEAD are unchanged.
 - Keep task-management records in the canonical documentation checkout unless the setup contract specifies another single-writer location.
 - Record base and candidate revisions, including nested repository revisions.
 - Never create a worktree from a dirty or ambiguous base.

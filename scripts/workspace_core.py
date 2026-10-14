@@ -331,6 +331,11 @@ def binding_plan(env, binding_id, requested=None, operation="read"):
               "writes": binding.get("writes", []), "executes_payload_operations": False}
     if requested is not None:
         target = resolve_under(scope, requested)
+        for adapter_name in env["data"].get("adapters", {}):
+            from importlib import import_module
+            adapter = import_module(f"adapter_{adapter_name}")
+            if hasattr(adapter, "check_target"):
+                adapter.check_target(env, project, target, operation)
         if operation != "read":
             require(binding["state"] == "active", "Writes require active binding")
             require(scope.is_dir(), "Binding scope is unavailable")

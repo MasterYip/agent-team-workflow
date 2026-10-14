@@ -1,0 +1,21 @@
+{
+  "base_revision": 1,
+  "change_id": "bind-task-001",
+  "reason": "Associate this bounded task with the selected project subfolder",
+  "changes": [
+    {
+      "collection": "bindings",
+      "id": "binding-task-001",
+      "set": {
+        "task_id": "DOC-001",
+        "task_manifest": "tasks/DOC-001/goal_manifest.md",
+        "project": "project-alpha",
+        "scope": "presentations",
+        "roles": ["reference"],
+        "state": "proposed",
+        "writes": [],
+        "authorization": "Reference-only example; activate only for the selected task"
+      }
+    }
+  ]
+}

@@ -10,6 +10,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
+sys.dont_write_bytecode = True
+
 TOKEN_RE = re.compile(r"\{\{[A-Z0-9_]+\}\}")
 INTEGRATION_MODES = {"fragment", "create", "none"}
 SECRET_REFERENCE_PREFIXES = (
@@ -330,6 +332,8 @@ def main() -> int:
         return 2
 
     try:
+        from workspace_core import outside_package
+        outside_package(repo.resolve())
         data = load_mapping(config_path)
         validate_no_raw_secrets(data)
         data, docs_dir, integration, manifest = validate_config(
@@ -359,7 +363,7 @@ def main() -> int:
         plan = build_plan(
             template_root, repo.resolve(), docs_dir, integration, replacements
         )
-    except (ConfigError, OSError) as exc:
+    except (ValueError, OSError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
 

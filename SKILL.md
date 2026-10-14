@@ -1,13 +1,40 @@
 ---
 name: agent-team-workflow
-description: Initialize, configure, operate, monitor, recover, and validate a portable multi-agent project workflow. Use when Codex needs to set up an agent team in a repository, create agent-team manifests and task records, coordinate agents across branches or worktrees and compute resources, maintain canonical task status, recover timed-out agents without losing external jobs, or package an existing team process for reuse.
+description: Initialize and operate agent-team workspaces with bounded tasks, long-lived project datasets, scoped task-to-project bindings, external configuration and durable records. Use for workspace setup, team coordination, project-file maintenance planning and workflow reuse.
 ---
 
 # Agent Team Workflow
 
 Build the team process from user-confirmed project facts. Keep planning records durable, execution isolated, resource use explicit, and acceptance evidence independent from an agent's self-report.
 
-## Initialize A Project
+## External Workspace Model (V2)
+
+For new workspaces, read [workspace-v2.md](references/workspace-v2.md). Treat this
+checkout as a read-only tool and Skill package during normal operation. Keep
+machine configuration, task state, runtime outputs and dataset payloads outside
+it. Invoke `scripts/workflow.py` by absolute path from the external workspace;
+do not configure a new workspace by editing this package's example assets.
+
+One workspace coordinates multiple repositories and long-lived projects. A task
+has a bounded outcome and may reference, maintain or promote into selected project
+subfolders. Reuse the same project's identity and records across successive tasks.
+No perpetual agent, automatic scheduling or external execution is implied.
+
+Use `init` and `update` as previews; `--apply` writes only external records. Use
+`status`, `validate` and `plan` read-only. Apply field-level catalog changes with
+the observed revision; preserve concurrent human edits. Task manifests own task
+lifecycle, the catalog owns projects/bindings, and external stores own payloads.
+Bind before maintaining files; record exact base identities, validation, release
+variant and backup handoff. A successful metadata update is not file delivery.
+
+Infer established configuration from user direction and existing records. Ask only
+for missing consequential facts. Prior authorization remains valid; do not repeat
+confirmation solely because a reference describes an interview.
+
+## Legacy Repository Initialization (V1)
+
+Use this path only for existing v1 installations or explicit legacy initialization.
+Do not mix its validator or template layout with v2 workspaces.
 
 1. Read repository instructions and inspect existing project-management files without writing.
 2. Read [initialization-interview.md](references/initialization-interview.md) completely.
@@ -54,7 +81,7 @@ Build the team process from user-confirmed project facts. Keep planning records 
 
 ## Maintain The Workflow
 
-- Treat the setup answers and resources manifest as sources of truth. Amend them through explicit decisions rather than silently changing assumptions.
+- In v2, use the external configuration and catalog for their declared responsibilities. In v1, use setup answers and resources manifest. Amend policy through explicit decisions rather than silently changing assumptions.
 - Keep bulk logs, datasets, checkpoints, media collections, caches, PID files, and credentials outside Git. Retain compact reports, manifests, checksums, summaries, and selected figures.
 - Run the validator after structural changes and before handing the workflow to another project.
 - Prefer repository-relative durable links. Do not make canonical status depend on temporary worktree paths.

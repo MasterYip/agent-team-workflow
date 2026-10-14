@@ -1,4 +1,4 @@
 interface:
   display_name: "Agent Team Workflow"
-  short_description: "Initialize and operate portable agent teams"
-  default_prompt: "Use $agent-team-workflow to initialize and operate an auditable agent team in this repository."
+  short_description: "Connect agent tasks to long-lived project workspaces"
+  default_prompt: "Use $agent-team-workflow to initialize or operate an external workspace, bind bounded tasks to long-lived projects, and keep configuration and execution outside the workflow package."

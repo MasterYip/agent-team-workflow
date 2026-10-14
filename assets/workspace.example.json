@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "workspace": {
+    "id": "research-team",
+    "name": "Research Team",
+    "root": "/absolute/path/to/team-workspace",
+    "records": "agent_team",
+    "runtime": ".agent-team-runtime"
+  },
+  "repositories": {
+    "implementation": {"root": "/absolute/path/to/project-code", "branch": "main"}
+  },
+  "stores": {
+    "materials": {"root": "/absolute/path/to/project-materials", "access": "reference"}
+  },
+  "policy": {
+    "commit": "Commit reviewed compact records at meaningful milestones",
+    "external_actions": "Follow the authority recorded in the task; no automatic publication or job launch",
+    "acceptance": "A named reviewer accepts deliverables; owner reports verification"
+  },
+  "adapters": {}
+}

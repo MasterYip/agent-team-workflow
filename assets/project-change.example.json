@@ -1,0 +1,20 @@
+{
+  "base_revision": 0,
+  "change_id": "register-project-alpha",
+  "reason": "Register the selected long-lived project without moving its files",
+  "changes": [
+    {
+      "collection": "projects",
+      "id": "project-alpha",
+      "set": {
+        "label": "Project Alpha",
+        "store": "materials",
+        "path": "ProjectAlpha",
+        "steward": "project-owner",
+        "lifecycle": "active",
+        "protected": ["private"],
+        "maintenance": "Preserve editable sources and verified final packages"
+      }
+    }
+  ]
+}

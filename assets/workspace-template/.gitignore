@@ -1,0 +1,7 @@
+tasks/**/work/
+tasks/**/staging/
+tasks/**/renders/
+tasks/**/__pycache__/
+catalog/events/.pending-*
+catalog/.writer.lock
+*.local.json
